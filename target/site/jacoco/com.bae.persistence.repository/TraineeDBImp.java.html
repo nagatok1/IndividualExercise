@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TraineeDBImp.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">IndividualExercise</a> &gt; <a href="index.source.html" class="el_package">com.bae.persistence.repository</a> &gt; <span class="el_source">TraineeDBImp.java</span></div><h1>TraineeDBImp.java</h1><pre class="source lang-java linenums">package com.bae.persistence.repository;
+
+import static javax.transaction.Transactional.TxType.REQUIRED;
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
+import java.util.Collection;
+
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
+
+import com.bae.util.JSONUtil;
+import com.bae.persistence.domain.Trainee;
+import com.bae.persistence.repository.TraineeRepository;
+
+@Transactional(SUPPORTS)
+@Default
+<span class="nc" id="L21">public class TraineeDBImp implements TraineeRepository {</span>
+
+<span class="nc" id="L23">	String success = &quot;{\&quot;message\&quot;: \&quot;Success\&quot;}&quot;;</span>
+<span class="nc" id="L24">	String failure = &quot;{\&quot;message\&quot;: \&quot;Failure\&quot;}&quot;;</span>
+
+	@PersistenceContext(unitName = &quot;primary&quot;)
+	private EntityManager manager;
+
+	@Inject
+	private JSONUtil jsonutil;
+
+	@Override
+	public String getAllTrainees() {
+<span class="nc" id="L34">		Query query = manager.createQuery(&quot;Select a FROM Trainee a&quot;);</span>
+<span class="nc" id="L35">		Collection&lt;Trainee&gt; trainees = (Collection&lt;Trainee&gt;) query.getResultList();</span>
+<span class="nc" id="L36">		return jsonutil.getJSONForObject(trainees);</span>
+	}
+
+	@Override
+	@Transactional(REQUIRED)
+	public String createTrainee(String trainee) {
+<span class="nc" id="L42">		Trainee newtrainee = jsonutil.getObjectForJSON(trainee, Trainee.class);</span>
+<span class="nc" id="L43">		manager.persist(newtrainee);</span>
+<span class="nc" id="L44">		return &quot;{\&quot;message\&quot;: \&quot;account has been sucessfully added\&quot;}&quot;;</span>
+	}
+
+	@Override
+	@Transactional(REQUIRED)
+	public String deleteTrainee(Long traineeid) {
+<span class="nc" id="L50">		Trainee TraineeInDB = findTrainee(traineeid);</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">		if (TraineeInDB != null) {</span>
+<span class="nc" id="L52">			manager.remove(TraineeInDB);</span>
+<span class="nc" id="L53">			return success;</span>
+		} else {
+<span class="nc" id="L55">			return failure;</span>
+		}
+	}
+
+	@Override
+	@Transactional(REQUIRED)
+	public String updateTrainee(Long traineeid, String trainee) {
+<span class="nc bnc" id="L62" title="All 2 branches missed.">		if (deleteTrainee(traineeid).equals(success)) {</span>
+<span class="nc" id="L63">			createTrainee(trainee);</span>
+<span class="nc" id="L64">			return success;</span>
+		} else {
+<span class="nc" id="L66">			return failure;</span>
+		}
+	}
+
+	private Trainee findTrainee(Long traineeid) {
+<span class="nc" id="L71">		return manager.find(Trainee.class, traineeid);</span>
+	}
+
+	@Override
+	public String findTraineeById(Long traineeid) {
+<span class="nc" id="L76">		return jsonutil.getJSONForObject(manager.find(Trainee.class, traineeid));</span>
+	}
+
+	@Override
+	public String findTraineeByClassroomId(Long classroomid) {
+<span class="nc" id="L81">		return jsonutil.getJSONForObject(manager.find(Trainee.class, classroomid));</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

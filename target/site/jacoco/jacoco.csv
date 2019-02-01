@@ -1,0 +1,13 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+IndividualExercise,com.bae.util,JSONUtil,19,0,0,0,5,0,3,0,3,0
+IndividualExercise,com.bae.persistence.domain,Trainer,43,0,0,0,16,0,8,0,8,0
+IndividualExercise,com.bae.persistence.domain,Trainee,33,0,0,0,15,0,8,0,8,0
+IndividualExercise,com.bae.business,TraineeBusiness,33,0,0,0,7,0,7,0,7,0
+IndividualExercise,com.bae.business,TrainerBusiness,33,0,0,0,7,0,7,0,7,0
+IndividualExercise,com.bae.persistence.repository,TrainerMapRepository,99,0,4,0,20,0,9,0,7,0
+IndividualExercise,com.bae.persistence.repository,TraineeMapRepository,99,0,4,0,20,0,9,0,7,0
+IndividualExercise,com.bae.persistence.repository,TraineeDBImp,93,0,4,0,21,0,10,0,8,0
+IndividualExercise,com.bae.persistence.repository,TrainerDBImp,93,0,4,0,21,0,10,0,8,0
+IndividualExercise,com.bae.rest,TrainerEndPoints,31,0,0,0,6,0,6,0,6,0
+IndividualExercise,com.bae.rest,TraineeEndPoints,31,0,0,0,6,0,6,0,6,0
+IndividualExercise,com.bae.rest,JaxActivator,3,0,0,0,1,0,1,0,1,0

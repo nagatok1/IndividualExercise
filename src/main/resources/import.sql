@@ -1,0 +1,10 @@
+INSERT INTO TRAINER (classroomid, trainer) VALUES ('1', 'Matt Hunt');
+INSERT INTO TRAINER (classroomid, trainer) VALUES ('2', 'Gareth Davies');
+INSERT INTO TRAINER (classroomid, trainer) VALUES ('3', 'Dale Carr');
+INSERT INTO TRAINEE (classroomid, trainee) VALUES ('1', 'Ben Leadbeater');
+INSERT INTO TRAINEE (classroomid, trainee) VALUES ('2', 'Jez Sully');
+INSERT INTO TRAINEE (classroomid, trainee) VALUES ('3', 'Elliott Parsons');
+INSERT INTO TRAINEE (classroomid, trainee) VALUES ('2', 'RumpelStiltskin');
+INSERT INTO TRAINEE (classroomid, trainee) VALUES ('2', 'JSON');
+INSERT INTO TRAINEE (classroomid, trainee) VALUES ('1', 'Java');
+INSERT INTO TRAINEE (classroomid, trainee) VALUES ('3', 'BLAH BLAH BLAH');
